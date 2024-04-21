@@ -1257,6 +1257,8 @@ deq.pop()
 6
 deq
 deque([1, 2, 3])
+deque[0] #gets left element
+deque[-1] #gets right element
 ```
 
 ## Counter
