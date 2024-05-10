@@ -770,6 +770,59 @@ dfs(0) # 1->2->3->4->5
 1. In a heap tree the node is smaller than its children
 
 ```python
+import heapq # (minHeap by Default)
+
+nums = [5, 7, 9, 1, 3]
+
+heapq.heapify(nums) # converts list into heap. Can be converted back to list by list(nums).
+heapq.heappush(nums,element) # Push an element into the heap
+heapq.heappop(nums) # Pop an element from the heap
+#heappush(heap, ele) :- This function is used to insert the element mentioned in its arguments into heap. The order is adjusted, so as heap structure is maintained.
+#heappop(heap) :- This function is used to remove and return the smallest element from heap. The order is adjusted, so as heap structure is maintained.
+
+# Other Methods Available in the Library
+# Used to return the k largest elements from the iterable specified 
+# The key is a function with that accepts single element from iterable,
+# and the returned value from that function is then used to rank that element in the heap
+heapq.nlargest(k, iterable, key = fun)
+heapq.nsmallest(k, iterable, key = fun)
+
+books = [
+    {"title": "Book A", "price": 30},
+    {"title": "Book B", "price": 20},
+]
+
+# Function to extract the price from a book dictionary
+def get_book_price(book):
+    return book["price"]
+
+# Find the top 3 most expensive books based on price
+top_expensive_books = heapq.nlargest(3, books, key=get_book_price)
+
+# Insert custom objects into the min-heap based on priority
+#the tuple (priority,object) is used for custom data structures
+
+# Define a custom class representing a task
+class Task:
+    def __init__(self, name, priority):
+        self.name = name
+        self.priority = priority
+
+# List of Task objects
+tasks = [
+    Task("Task A", 3),
+    Task("Task B", 1),
+]
+
+# Convert the list of Task objects into a list of tuples (priority, Task)
+task_heap = [(task.priority, task) for task in tasks]
+
+# Use heapq.heapify to rearrange the list into a min-heap based on priority
+heapq.heapify(task_heap) 
+
+```
+
+```python
 def maximumProduct(self, nums: List[int]) -> int:
   l = heapq.nlargest(3, nums)
   s = heapq.nsmallest(3, nums)
@@ -811,6 +864,8 @@ def topKFrequent(self, words: List[str], k: int) -> List[str]:
     freq = Counter(words)
     return heapq.nsmallest(k, freq.keys(), lambda x:(-freq[x], x))
 ```
+
+
 
 ## Lambda
 
