@@ -769,7 +769,7 @@ def get_book_price(book):
 top_expensive_books = heapq.nlargest(3, books, key=get_book_price)
 
 # Insert custom objects into the min-heap based on priority
-#the tuple (priority,object) is used for custom data structures
+#the tuple (priority,object) is used for custom data structures - custom heap
 
 # Define a custom class representing a task
 class Task:
@@ -790,6 +790,26 @@ task_heap = [(task.priority, task) for task in tasks]
 heapq.heapify(task_heap) 
 
 ```
+
+Merge sorted iterables
+
+```python
+import heapq
+
+# Sorted lists to be merged
+list1 = [1, 3, 5]
+list2 = [2, 4, 6]
+
+# Merge the sorted lists
+merged_iterable = heapq.merge(list1, list2)
+
+# Convert the merged iterable to a list (optional)
+merged_list = list(merged_iterable)
+print(merged_list)  # Output: [1, 2, 3, 4, 5, 6]
+```
+
+
+**Other stuff**
 
 ```python
 def maximumProduct(self, nums: List[int]) -> int:
@@ -833,6 +853,7 @@ def topKFrequent(self, words: List[str], k: int) -> List[str]:
     freq = Counter(words)
     return heapq.nsmallest(k, freq.keys(), lambda x:(-freq[x], x))
 ```
+
 
 
 
